@@ -11,7 +11,7 @@ namespace Ardonagh.Configuration
 {
     public class CustomerConfigurations
     {
-        // This configuration is made to inject any services which is related to the customer at once to the servicehost.
+        // This configuration is made to inject any services which is related to the customer at once to the ServiceHost.
         public static void Configure(IServiceCollection services, string connectionString)
         {
             services.AddTransient<ICustomerApplication, CustomerApplication>();
