@@ -6,6 +6,7 @@ namespace Ardonagh.Infrastructure.EFCore.Mapping
 {
     public class CustomerMapping : IEntityTypeConfiguration<Customer>
     {
+        // This part is table configuration of the database
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.ToTable("Customers");

@@ -1,16 +1,10 @@
 ﻿using System.Linq.Expressions;
 using Ardonagh.Application.Contracts;
 using Ardonagh.Domain;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using Moq;
-using System.Reflection.Metadata;
 using Shouldly;
 using Xunit;
 using System.ComponentModel.DataAnnotations;
-using Castle.Core.Resource;
-using System;
-using System.Collections.Generic;
-using System.Collections;
 
 namespace Ardonagh.Application.Test
 {
@@ -30,6 +24,7 @@ namespace Ardonagh.Application.Test
             };
             _customerRepositoryMock = new Mock<ICustomerRepository>();
 
+            // Setup a mock for Exist method in the repository to use in tests
             _customerRepositoryMock.
                 Setup(x => x.Exists(It.IsAny<Expression<Func<Customer, bool>>>()))
                .Returns((Expression<Func<Customer, bool>> predicate) =>
@@ -39,18 +34,20 @@ namespace Ardonagh.Application.Test
                     return _availableCustomers.Exists(predicateDelegate);
                 });
 
-
+            // Setup a mock for Exist GetCustomer in the repository to use in tests
             _customerRepositoryMock.
                 Setup(x => x.GetCustomer(It.IsAny<long>())).
                 Returns((long id) =>
                 {
                     return _availableCustomers.FirstOrDefault(x => x.Id == id);
                 });
-            
+
+            // Setup a mock for Exist GetCustomers in the repository to use in tests
             _customerRepositoryMock
                 .Setup(x => x.GetCustomers())
                 .Returns(_availableCustomers.OrderBy(x=>x.Id).ToList);
 
+            // Setup a mock for Exist AddCustomer in the repository to use in tests
             _customerRepositoryMock.
                 Setup(x => x.AddCustomer(It.IsAny<Customer>()))
                 .Callback((Customer customer) => _availableCustomers.Add(customer));

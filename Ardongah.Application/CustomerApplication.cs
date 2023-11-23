@@ -13,14 +13,17 @@ namespace Ardonagh.Application
             _customerRepository = customerRepository;
         }
 
+        // This method add a customer to the database
         public OperationResult Add(CreateCustomer command)
         {
 
             var operation = new OperationResult();
+            // Check if the customer already exists.
             if (_customerRepository.Exists(x => x.Name.ToLower() == command.Name.ToLower() &&
                                                 x.Age == command.Age &&
                                                 x.PostCode.ToLower() == command.PostCode.ToLower())) 
                 return operation.Failed("This user already exists.");
+            // Create a new customer based on the command and save it to the database
             var customer = new Customer(command.Name, command.Age, command.PostCode, command.Height);
             _customerRepository.AddCustomer(customer);
             _customerRepository.SaveChanges();
@@ -28,19 +31,22 @@ namespace Ardonagh.Application
 
         }
 
+        // This method edit a customer from the database
         public OperationResult Edit(EditCustomer command)
         {
             var operation = new OperationResult();
+            // Get the customer from database with the Id
             var customer = _customerRepository.GetCustomer(command.Id);
             if (customer == null)
                 return operation.Failed("User cannot be found.");
+            // Edit the customer based on the command and save it to the database
             customer.Edit(command.Name, command.Age, command.PostCode, command.Height);
             _customerRepository.SaveChanges();
             return operation.Succeeded($"Customer ({command.Name}) Edited successfully!");
-
-
+            
         }
 
+        // This method get the list of the customers from the database
         public List<CustomerViewModel> GetCustomers()
         {
             var customers = _customerRepository.GetCustomers();
@@ -54,9 +60,11 @@ namespace Ardonagh.Application
             }).ToList();
         }
 
+        // This method get a specific customer from the database
         public EditCustomer GetDetails(long id)
         {
             var customer = _customerRepository.GetCustomer(id);
+            // Check if the customer exist
             if (customer == null)
                 throw new NullReferenceException("User does not exist.");
             return new EditCustomer
