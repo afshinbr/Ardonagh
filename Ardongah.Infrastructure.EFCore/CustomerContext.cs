@@ -4,21 +4,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ardonagh.Infrastructure.EFCore
 {
-    public class PersonContext : DbContext
+    public class CustomerContext : DbContext
     {
 
-        public DbSet<Person> People { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
-        public PersonContext(DbContextOptions<PersonContext> options) : base(options)
+        public CustomerContext(DbContextOptions<CustomerContext> options) : base(options)
         {
-            
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var assembly = typeof(PersonMapping).Assembly;
+            var assembly = typeof(CustomerMapping).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
             base.OnModelCreating(modelBuilder);
+
+
+
         }
     }
 }

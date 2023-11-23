@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="my-5">
+    <h1>Customers</h1>
+</div>
+<div class="mb-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">@TempData["ErrorMessage"]</div>
+    }
+    <div class="main-button">
+        <a class="btn btn-primary" asp-page-handler=""><i class="fa fa-rotate-right"></i> Refresh</a>
+        <a class="btn btn-success" href="#showmodal=@Url.Page("./Index", "CreateCustomer")"><i class="fa fa-plus"></i> Add</a>
+    </div>
+
+</div>
+<table id="dataTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Post Code</th>
+        <th>Height (meters)</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var customer in Model.Customers)
+    {
+        <tr>
+                <td class="cell-table">@customer.Name</td>
+                <td class="cell-table">@customer.Age</td>
+                <td class="cell-table">@customer.PostCode</td>
+                <td class="cell-table">@customer.Height</td>
+                <td class="cell-table"><a class="btn btn-secondary" href="#showmodal=@Url.Page("./Index", "EditCustomer", new { id = customer.Id})"><i class="fa fa-edit"></i> Edit</a></td>
+        </tr>
+
+    }
+
+    </tbody>
+</table>

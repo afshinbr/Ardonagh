@@ -1,0 +1,78 @@
+﻿@model Ardonagh.Application.Contracts.CreateCustomer
+
+<div class="modal-header ">
+    <h5 class="modal-title mt-0">New Customer</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form id="userForm" asp-page="./Index" asp-page-handler="CreateCustomer" method="post">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <div class="error-messages" id="ErrorMessage"></div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="form-group row">
+                    <label asp-for="Name" class="col-sm-3 col-form-label text-left">Name</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" asp-for="Name" />
+                    </div>
+                    <span asp-validation-for="Name" class="error asp-error-button col-sm-10 text-left mt-2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="form-group row">
+                    <label asp-for="Age" class="col-sm-3 col-form-label text-left">Age</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" asp-for="Age" />
+                    </div>
+                    <span asp-validation-for="Age" class="error asp-error-button col-sm-10 text-left mt-2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="form-group row">
+                    <label asp-for="PostCode" class="col-sm-3 col-form-label text-left">Post Code</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" asp-for="PostCode" />
+                    </div>
+                    <span asp-validation-for="PostCode" class="error asp-error-button col-sm-10 text-left mt-2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <div class="form-group row">
+                    <label asp-for="Height" class="col-sm-3 col-form-label text-left">Height (m)</label>
+                    <div class="col-sm-8">
+                        <input  step="0.01" class="form-control" asp-for="Height" />
+                    </div>
+                    <span asp-validation-for="Height" class="error asp-error-button col-sm-10 text-left mt-2"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button  type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+        <button disabled="disabled" id="submitbutton" type="submit" class="btn btn-primary waves-effect waves-light">OK</button>
+    </div>
+</form>
+<script>
+        var $form = $("#userForm");
+        var $submitbutton = $("#submitbutton");
+
+        $form.on("blur", "input", () => {
+            if ($form.valid()) {
+                $submitbutton.removeAttr("disabled");
+            } else {
+                $submitbutton.attr("disabled", "disabled");
+            }
+        });
+</script>

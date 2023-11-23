@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ardonagh.Infrastructure.EFCore.Mapping
 {
-    public class PersonMapping : IEntityTypeConfiguration<Person>
+    public class CustomerMapping : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
+            builder.ToTable("Customers");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Age).IsRequired();

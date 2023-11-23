@@ -9,14 +9,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Ardonagh.Configuration
 {
-    public class PersonConfigurations
+    public class CustomerConfigurations
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {
-            services.AddTransient<IPersonApplication, PersonApplication>();
-            services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddTransient<ICustomerApplication, CustomerApplication>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             var conn = new SqliteConnection(connectionString);
-            services.AddDbContext<PersonContext>(x => x.UseSqlite(conn));
+            conn.Open();
+            services.AddDbContext<CustomerContext>(x => x.UseSqlite(conn));
         }
 
     }

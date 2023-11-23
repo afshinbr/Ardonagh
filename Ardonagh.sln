@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardonagh.Configuration", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardonagh.Infrastructure.EFCore", "Ardongah.Infrastructure.EFCore\Ardonagh.Infrastructure.EFCore.csproj", "{5A66D22A-0932-40C7-AAF5-5782CD1A97BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost", "ServiceHost\ServiceHost.csproj", "{655C6D50-C8B8-4639-AB35-19C097FF5A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardonagh.Application.Test", "Ardonagh.Application.Test\Ardonagh.Application.Test.csproj", "{26BB67BB-9FD3-4239-A214-97AD018EFF24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{5A66D22A-0932-40C7-AAF5-5782CD1A97BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A66D22A-0932-40C7-AAF5-5782CD1A97BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A66D22A-0932-40C7-AAF5-5782CD1A97BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655C6D50-C8B8-4639-AB35-19C097FF5A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655C6D50-C8B8-4639-AB35-19C097FF5A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655C6D50-C8B8-4639-AB35-19C097FF5A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655C6D50-C8B8-4639-AB35-19C097FF5A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BB67BB-9FD3-4239-A214-97AD018EFF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26BB67BB-9FD3-4239-A214-97AD018EFF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26BB67BB-9FD3-4239-A214-97AD018EFF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26BB67BB-9FD3-4239-A214-97AD018EFF24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
